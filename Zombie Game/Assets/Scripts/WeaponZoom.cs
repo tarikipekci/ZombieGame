@@ -1,25 +1,24 @@
-using System;
 using Cinemachine;
 using StarterAssets;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class WeaponZoom : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera fpsCamera;
+    [SerializeField] public CinemachineVirtualCamera fpsCamera;
     public FirstPersonController firstPersonController;
     [SerializeField] private float zoomedOutFOV = 40f;
-    [SerializeField] private float zoomedInFOVMachineGun = 20f;
+    [SerializeField] public float zoomedInFOVMachineGun = 20f;
     private bool _zoomedInToggle;
     [SerializeField] private float zoomInRotationSpeed = 0.2f;
     [SerializeField] private float zoomOutRotationSpeed = 1f;
-    public Animator animForMachineGun, animForShotgun;
+    public Animator animForMachineGun, animForShotgun, animForPistol;
 
     private void Awake()
     {
         fpsCamera.m_Lens.FieldOfView = zoomedOutFOV;
         animForMachineGun.SetBool("zoomIn", false);
         animForShotgun.SetBool("zoomIn", false);
+        animForPistol.SetBool("zoomIn",false);
     }
 
     private void Update()
@@ -33,6 +32,7 @@ public class WeaponZoom : MonoBehaviour
             firstPersonController.RotationSpeed = zoomInRotationSpeed;
             animForMachineGun.SetBool("zoomIn", true);
             animForShotgun.SetBool("zoomIn", true);
+            animForPistol.SetBool("zoomIn",true);
         }
         else
         {
@@ -42,6 +42,7 @@ public class WeaponZoom : MonoBehaviour
             firstPersonController.RotationSpeed = zoomOutRotationSpeed;
             animForMachineGun.SetBool("zoomIn", false);
             animForShotgun.SetBool("zoomIn", false);
+            animForPistol.SetBool("zoomIn",false);
         }
     }
 }
