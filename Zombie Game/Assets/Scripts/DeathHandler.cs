@@ -13,6 +13,7 @@ public class DeathHandler : MonoBehaviour
     {
         gameOverCanvas.enabled = true;
         Time.timeScale = 0f;
+        FindObjectOfType<WeaponSwitcher>().enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
